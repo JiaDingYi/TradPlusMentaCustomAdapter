@@ -42,6 +42,7 @@ pod 'MentaBaseGlobal',          '1.0.20'
 pod 'MentaMediationGlobal',     '1.0.20'
 pod 'MentaVlionGlobal',         '1.0.20'
 pod 'MentaVlionGlobalAdapter',  '1.0.20'
+pod 'TradPlusMentaCustomAdapter', :path => './'
 
 ##测试工具
 pod "TPMediationHelper",'1.2.0'
