@@ -38,6 +38,11 @@ pod 'GoogleAds-IMA-iOS-SDK','3.26.1'
 pod 'TradPlusAdSDK/BaiduAdapter', '13.9.0'
 pod 'BaiduMobAdSDK','5.391'
 
+pod 'MentaBaseGlobal',          '1.0.20'
+pod 'MentaMediationGlobal',     '1.0.20'
+pod 'MentaVlionGlobal',         '1.0.20'
+pod 'MentaVlionGlobalAdapter',  '1.0.20'
+
 ##测试工具
 pod "TPMediationHelper",'1.2.0'
 end
