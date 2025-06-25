@@ -14,6 +14,10 @@ Pod::Spec.new do |s|
     
     s.dependency 'TradPlusAdSDK'
     s.dependency 'TradPlusAdSDK/TPCrossAdapter'
+    s.dependency 'MentaVlionGlobal',         '~> 1.0.20'
+    s.dependency 'MentaMediationGlobal',     '~> 1.0.20'
+    s.dependency 'MentaVlionGlobal',         '~> 1.0.20'
+    s.dependency 'MentaVlionGlobalAdapter',  '~> 1.0.20'
   
   end
   
