@@ -404,7 +404,7 @@
 				048B0212248BF2600003F53E /* Frameworks */,
 				048B0213248BF2600003F53E /* Resources */,
 				611C9B16E220F38AD742D260 /* [CP] Copy Pods Resources */,
-				352269443B0D5DCBC77C6AC9 /* [CP] Embed Pods Frameworks */,
+				8294219FB9599CA8782462E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -484,23 +484,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		352269443B0D5DCBC77C6AC9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		611C9B16E220F38AD742D260 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,6 +499,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8294219FB9599CA8782462E9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TradPlusDemo/Pods-TradPlusDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3721E7B714EA149DAB966D6 /* [CP] Check Pods Manifest.lock */ = {

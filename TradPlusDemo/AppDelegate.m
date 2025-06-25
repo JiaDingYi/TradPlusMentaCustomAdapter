@@ -30,7 +30,7 @@
         }];
     }
     // Override point for customization after application launch.
-    [TradPlus initSDK:@"75AA158112F1EFA29169E26AC63AFF94" completionBlock:^(NSError * _Nonnull error) {
+    [TradPlus initSDK:@"B97FD6E3B588C7F3938791567A4BD685" completionBlock:^(NSError * _Nonnull error) {
         if (!error)
         {
             //mFluteSDKInited = YES;
