@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TradPlusAds/TradPlusAds.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TPlusMentaRewardVideoCustomAdapter : NSObject
+@interface TPlusMentaRewardVideoCustomAdapter : TradPlusBaseAdapter
 
 @end
 
