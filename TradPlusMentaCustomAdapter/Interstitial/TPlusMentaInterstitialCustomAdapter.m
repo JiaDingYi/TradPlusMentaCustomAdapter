@@ -10,6 +10,7 @@
 
 @interface TPlusMentaInterstitialCustomAdapter () <MentaMediationInterstitialDelegate>
 @property (nonatomic, strong) MentaMediationInterstitial *interstitialAd;
+@property (nonatomic, assign) BOOL isC2S;
 
 @end
 
@@ -18,6 +19,7 @@
 - (BOOL)extraActWithEvent:(NSString *)event info:(NSDictionary *)config {
     NSLog(@"%s", __FUNCTION__);
     if ([event isEqualToString:@"C2SBidding"]) {
+        self.isC2S = YES;
         [self loadAdWithWaterfallItem:self.waterfallItem];
     } else if ([event isEqualToString:@"LoadAdC2SBidding"]) {
         if ([self.interstitialAd isAdReady]) {
@@ -29,6 +31,8 @@
                                                  userInfo:@{NSLocalizedDescriptionKey : @"C2S Interstitial not ready"}];
             [self AdLoadFailWithError:loadError];
         }
+    } else if ([event isEqualToString:@"C2SLoss"]) {
+        [self sendC2sLoss:config];
     } else {
         return NO;
     }
@@ -61,6 +65,10 @@
     }
     NSString *appID = item.config[@"AppID"];
     NSString *appKey = item.config[@"AppKey"];
+    if (!appID || !appKey) {
+        [self AdConfigError];
+        return;
+    }
     __weak typeof(self) weakSelf = self;
     [[MentaAdSDK shared] startWithAppID:appID appKey:appKey finishBlock:^(BOOL success, NSError * _Nullable error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -68,6 +76,14 @@
             [strongSelf AdConfigError];
         }
     }];
+}
+
+- (void)sendC2sLoss:(NSDictionary *)config {
+    [self.interstitialAd sendLossNotificationWithWinnerPrice:@"" info:config];
+}
+
+- (void)sendC2sWin {
+    [self.interstitialAd sendWinnerNotificationWith:@{}];
 }
 
 #pragma mark - MentaMediationInterstitialDelegate
@@ -79,35 +95,47 @@
 // 广告素材加载失败
 - (void)menta_interstitialLoadFailedWithError:(NSError *)error interstitial:(MentaMediationInterstitial *)interstitial {
     NSLog(@"%s", __FUNCTION__);
-    //加载失败，将错误信息回传给TradPlusSDK
-    NSString *errorStr = [NSString stringWithFormat:@"%@", error];
-    NSDictionary *dic = @{@"error":errorStr};
-    [self ADLoadExtraCallbackWithEvent:@"C2SBiddingFail" info:dic];
+    if (self.isC2S) {
+        //加载失败，将错误信息回传给TradPlusSDK
+        NSString *errorStr = [NSString stringWithFormat:@"%@", error];
+        NSDictionary *dic = @{@"error":errorStr};
+        [self ADLoadExtraCallbackWithEvent:@"C2SBiddingFail" info:dic];
+    } else {
+        [self AdLoadFailWithError:error];
+    }
 }
 
 // 广告素材渲染成功
 // 此时可以获取 ecpm
 - (void)menta_interstitialRenderSuccess:(MentaMediationInterstitial *)interstitial {
     NSLog(@"%s", __FUNCTION__);
-    //三方版本号
-    NSString *version = [[MentaAdSDK shared] sdkVersion];
-    //广告对象的ECPM
-    NSString *ecpmStr = [interstitial eCPM];
-    //通过接口返回给SDK
-    NSDictionary *dic = @{
-        @"ecpm":ecpmStr ?: @"",
-        @"version":version ? : @""
-    };
-    [self ADLoadExtraCallbackWithEvent:@"C2SBiddingFinish" info:dic];
+    if (self.isC2S) {
+        //三方版本号
+        NSString *version = [[MentaAdSDK shared] sdkVersion];
+        //广告对象的ECPM
+        NSString *ecpmStr = [interstitial eCPM];
+        //通过接口返回给SDK
+        NSDictionary *dic = @{
+            @"ecpm":ecpmStr ?: @"",
+            @"version":version ? : @""
+        };
+        [self ADLoadExtraCallbackWithEvent:@"C2SBiddingFinish" info:dic];
+    } else {
+        [self AdLoadFinsh];
+    }
 }
 
 // 广告素材渲染失败
 - (void)menta_interstitialRenderFailureWithError:(NSError *)error interstitial:(MentaMediationInterstitial *)interstitial {
     NSLog(@"%s", __FUNCTION__);
-    //加载失败，将错误信息回传给TradPlusSDK
-    NSString *errorStr = [NSString stringWithFormat:@"%@", error];
-    NSDictionary *dic = @{@"error":errorStr};
-    [self ADLoadExtraCallbackWithEvent:@"C2SBiddingFail" info:dic];
+    if (self.isC2S) {
+        //加载失败，将错误信息回传给TradPlusSDK
+        NSString *errorStr = [NSString stringWithFormat:@"%@", error];
+        NSDictionary *dic = @{@"error":errorStr};
+        [self ADLoadExtraCallbackWithEvent:@"C2SBiddingFail" info:dic];
+    } else {
+        [self AdLoadFailWithError:error];
+    }
 }
 
 // 广告即将展示
@@ -125,6 +153,7 @@
 - (void)menta_interstitialExposed:(MentaMediationInterstitial *)interstitial {
     NSLog(@"%s", __FUNCTION__);
     [self AdShow];
+    [self sendC2sWin];
 }
 
 // 广告点击
