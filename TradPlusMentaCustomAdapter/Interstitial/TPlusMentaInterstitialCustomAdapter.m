@@ -153,7 +153,9 @@
 - (void)menta_interstitialExposed:(MentaMediationInterstitial *)interstitial {
     NSLog(@"%s", __FUNCTION__);
     [self AdShow];
-    [self sendC2sWin];
+    if (self.isC2S) {
+        [self sendC2sWin];
+    }
 }
 
 // 广告点击
