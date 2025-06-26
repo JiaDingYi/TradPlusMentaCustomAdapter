@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'TradPlusMentaCustomAdapter'
-    s.version          = '1.0.0'
+    s.version          = '1.0.20'
     s.summary          = 'TradPlusMentaCustomAdapter.'
     s.description      = 'A short description of TradPlusMentaCustomAdapter.'
     s.homepage         = 'https://github.com/jdy'
