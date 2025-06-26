@@ -11,6 +11,7 @@
 @interface TPlusMentaRewardVideoCustomAdapter () <MentaMediationRewardVideoDelegate>
 @property (nonatomic, strong) MentaMediationRewardVideo *rewardVideo;
 @property (nonatomic, assign) BOOL isC2S;
+@property (nonatomic, assign) BOOL isRewarded;
 
 @end
 
@@ -40,7 +41,7 @@
 
 - (void)loadAdWithWaterfallItem:(TradPlusAdWaterfallItem *)item {
     [self initMentaSDK:item];
-    
+    self.isRewarded = NO;
     NSString *placementID = item.config[@"PlacementaID"];
     self.rewardVideo = [[MentaMediationRewardVideo alloc] initWithPlacementID:placementID];
     self.rewardVideo.delegate = self;
@@ -169,7 +170,7 @@
 // 激励视频达到奖励节点
 - (void)menta_rewardVideoDidEarnReward:(MentaMediationRewardVideo *)rewardVideo {
     NSLog(@"%s", __FUNCTION__);
-    [self AdRewardedWithInfo:nil];
+    self.isRewarded = YES;
 }
 
 // 激励视频播放完成
@@ -180,6 +181,9 @@
 // 激励视频广告关闭
 -(void)menta_rewardVideoClosed:(MentaMediationRewardVideo *)rewardVideo {
     NSLog(@"%s", __FUNCTION__);
+    if (self.isRewarded) {
+        [self AdRewardedWithInfo:nil];
+    }
     [self AdClose];
 }
 
