@@ -26,7 +26,8 @@
     [super viewDidLoad];
     self.nativeAd = [[TradPlusAdNative alloc] init];
     self.nativeAd.delegate = self;
-    [self.nativeAd setAdUnitID:@"F9FC3735547264F4798F8BC28D3EEC6D"];
+//    [self.nativeAd setAdUnitID:@"F9FC3735547264F4798F8BC28D3EEC6D"];
+    [self.nativeAd setAdUnitID:@"F78759E6E5B965EAE0F008A3C2A5B7E2"];
     
     //资源下载完成后再通知load完成
 //    self.nativeAd.finishDownload = YES;
