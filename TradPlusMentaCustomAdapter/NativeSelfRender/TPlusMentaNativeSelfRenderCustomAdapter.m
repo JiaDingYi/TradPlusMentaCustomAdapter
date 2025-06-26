@@ -55,6 +55,7 @@
     NSString *placementID = item.config[@"PlacementaID"];
     NSString *isExpressAd = item.config[@"isExpressAd"];
     if (isExpressAd) {
+        NSLog(@"menta native isExpressAd");
         self.isExpressAd = YES;
         self.nativeExpress = [[MentaMediationNativeExpress alloc] initWithPlacementID:placementID];
         self.nativeExpress.delegate = self;
