@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'TradPlusMentaCustomAdapter'
-    s.version          = '1.0.21'
+    s.version          = '1.0.22'
     s.summary          = 'TradPlusMentaCustomAdapter.'
     s.description      = 'A short description of TradPlusMentaCustomAdapter.'
     s.homepage         = 'https://github.com/jdy'
@@ -14,10 +14,10 @@ Pod::Spec.new do |s|
     
     s.dependency 'TradPlusAdSDK'
     s.dependency 'TradPlusAdSDK/TPCrossAdapter'
-    s.dependency 'MentaVlionGlobal',         '~> 1.0.21'
-    s.dependency 'MentaMediationGlobal',     '~> 1.0.21'
-    s.dependency 'MentaVlionGlobal',         '~> 1.0.21'
-    s.dependency 'MentaVlionGlobalAdapter',  '~> 1.0.21'
+    s.dependency 'MentaVlionGlobal',         '~> 1.0.22'
+    s.dependency 'MentaMediationGlobal',     '~> 1.0.22'
+    s.dependency 'MentaVlionGlobal',         '~> 1.0.22'
+    s.dependency 'MentaVlionGlobalAdapter',  '~> 1.0.22'
   
   end
   
